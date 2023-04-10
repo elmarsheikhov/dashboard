@@ -1,0 +1,19 @@
+.customer_table {
+  /* background-color: #fff; */
+  width: 100%;
+}
+
+.page-number {
+  cursor: pointer;
+  margin-left: 4px;
+}
+.page-number:hover {
+  background-color: cyan;
+}
+
+.limit select {
+  outline: none;
+  border: none;
+  padding: 4px;
+  background-color: transparent;
+}

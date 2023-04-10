@@ -1,0 +1,23 @@
+.sidebar-main {
+  height: 10000vh;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
+    rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+  transition: width 0.3s ease-out;
+}
+.menu_logo {
+  width: 170px;
+  cursor: pointer;
+}
+.menu-button {
+  cursor: pointer;
+}
+.menu-item {
+  cursor: pointer;
+  text-decoration: none;
+}
+.menu-icon {
+  font-size: 28px;
+}
+.active {
+  color: orange !important;
+}

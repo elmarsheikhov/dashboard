@@ -1,0 +1,47 @@
+.theme {
+  z-index: 100;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 280px;
+  height: 100vh;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
+    rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+  /* transition: width 1s; */
+}
+
+.theme-icon {
+  cursor: pointer;
+}
+ul {
+  list-style: none;
+}
+ul li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+ul li i {
+  font-size: 30px;
+}
+.mood-item {
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.mood-item:hover {
+  background-color: cyan;
+}
+.mood-item i {
+  border-radius: 50%;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
+    rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+}
+
+.color-item {
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.color-item:hover {
+  background-color: cyan;
+}
