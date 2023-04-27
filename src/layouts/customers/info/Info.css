@@ -1,0 +1,38 @@
+textarea {
+  height: 40px;
+  resize: none;
+}
+.description_textarea {
+  min-height: 80px !important;
+  max-height: 300px;
+  resize: none;
+}
+
+.keys::first-letter {
+  text-transform: uppercase;
+}
+/* Set the width and height of the scrollbar */
+.description_textarea::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+/* Set the background color of the scrollbar */
+.description_textarea::-webkit-scrollbar-track {
+  /* background-color: #f1f1f1; */
+  margin: 5px;
+}
+
+/* Set the color of the scrollbar thumb */
+.description_textarea::-webkit-scrollbar-thumb {
+  border-radius: 7px;
+  background-color: #888;
+}
+
+/* Set the color of the scrollbar thumb on hover */
+.description_textarea::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
+}
+.form-control:focus {
+  box-shadow: none;
+}

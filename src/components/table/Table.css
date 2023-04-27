@@ -1,6 +1,11 @@
-.customer_table {
-  /* background-color: #fff; */
+.table {
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  border-radius: 7px;
   width: 100%;
+}
+
+tbody tr:last-child {
+  border-bottom: none !important;
 }
 
 .page-number {
@@ -16,4 +21,15 @@
   border: none;
   padding: 4px;
   background-color: transparent;
+}
+
+.info-element {
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.info-element:hover {
+  color: cyan;
+}
+.head_elements {
+  text-transform: uppercase;
 }

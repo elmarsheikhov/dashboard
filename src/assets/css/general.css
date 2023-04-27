@@ -1,13 +1,11 @@
 .box-in-Dashboard {
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   border-radius: 10px;
-  letter-spacing: 0.4px;
+  letter-spacing: 0.31px;
 }
-.hover-item {
-  transition: transform 0.5s;
-  cursor: pointer;
-}
-.hover-item:hover {
-  /* background-color: cyan !important; */
-  transform: scale(1.05);
+.chart {
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  border-radius: 10px;
+  /* max-width: 650px; */
+  margin: 35px auto;
 }

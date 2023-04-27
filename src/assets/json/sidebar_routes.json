@@ -13,5 +13,10 @@
     "display_name": "Products",
     "route": "/products",
     "icon": "bx bx-package"
+  },
+  {
+    "display_name": "Settings",
+    "route": "/settings",
+    "icon": "bx bx-cog"
   }
 ]

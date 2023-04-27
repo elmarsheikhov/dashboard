@@ -1,8 +1,9 @@
 import React from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
-import Dashboard from "../layouts/Dashboard";
-import Customers from "../layouts/Customers";
-import Products from "../layouts/Products";
+import Dashboard from "../layouts/dashboard/Dashboard";
+import Customers from "../layouts/customers/Customers";
+import Products from "../layouts/product/Products";
+import Settings from "../layouts/settings/Settings";
 import { ThemeContext } from "../App";
 function Router() {
   const darkTheme = React.useContext(ThemeContext);
@@ -22,6 +23,10 @@ function Router() {
     {
       path: "/products",
       element: <Products />,
+    },
+    {
+      path: "/settings",
+      element: <Settings />,
     },
   ];
   return (

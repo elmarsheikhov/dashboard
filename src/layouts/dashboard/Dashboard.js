@@ -1,9 +1,8 @@
 import React, { useState, useContext } from "react";
-import "../assets/css/general.css";
-import status_card from "../assets/json/status-card-data.json";
+import status_card from "../../assets/json/status-card-data.json";
 import Chart from "react-apexcharts";
-import "../assets/css/general.css";
-import { ThemeContext } from "../App";
+import "../../assets/css/general.css";
+import { ThemeContext } from "../../App";
 
 function Dashboard() {
   const darkTheme = useContext(ThemeContext);
@@ -12,46 +11,37 @@ function Dashboard() {
     color: darkTheme ? "#fafafa" : "#444",
   };
   const [options, setOptions] = useState({
-    series: [
-      {
-        name: "Desktops",
-        data: [10, 41, 35, 51, 49, 62, 69, 91, 148],
-      },
-    ],
     chart: {
-      height: 350,
-      type: "line",
-      zoom: {
-        enabled: false,
-      },
+      height: 280,
+      type: "area",
     },
     dataLabels: {
       enabled: false,
     },
-    stroke: {
-      curve: "straight",
-    },
-    title: {
-      text: "Product Trends by Month",
-      align: "left",
-    },
-    grid: {
-      row: {
-        colors: ["#f3f3f3", "transparent"], // takes an array which will be repeated on columns
-        opacity: 0.5,
+    series: [
+      {
+        name: "Series 1",
+        data: [45, 52, 38, 45, 19, 23, 2],
+      },
+    ],
+    fill: {
+      type: "gradient",
+      gradient: {
+        shadeIntensity: 1,
+        opacityFrom: 0.7,
+        opacityTo: 0.9,
+        stops: [0, 90, 100],
       },
     },
     xaxis: {
       categories: [
-        "Jan",
-        "Feb",
-        "Mar",
-        "Apr",
-        "May",
-        "Jun",
-        "Jul",
-        "Aug",
-        "Sep",
+        "01 Jan",
+        "02 Jan",
+        "03 Jan",
+        "04 Jan",
+        "05 Jan",
+        "06 Jan",
+        "07 Jan",
       ],
     },
   });
@@ -65,7 +55,7 @@ function Dashboard() {
             {status_card.map((item, index) => (
               <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12 ">
                 <div
-                  className="box-in-Dashboard hover-item d-flex px-3 py-4"
+                  className="box-in-Dashboard d-flex px-3 py-4"
                   style={themeStyles}
                 >
                   <div className="p-2 d-flex align-items-center ">
@@ -81,7 +71,7 @@ function Dashboard() {
           </div>
         </div>
         <div
-          class="box-in-Dashboard col-xl-6 col-lg-12 d-flex align-items-center justify-content-center"
+          class=" chart col-xl-6 col-lg-12 d-flex align-items-center justify-content-center"
           style={themeStyles}
         >
           <Chart
@@ -90,13 +80,13 @@ function Dashboard() {
               theme: {
                 mode: darkTheme ? "dark" : "light",
               },
-              colors: [themeStyles.color],
+              // colors: [themeStyles.color],
             }}
             series={options.series}
             // style={{ width: "100%" }}
             // height={230}
             // width={520}
-            height="90%"
+            // height="90%"
             width="180%"
           />
         </div>

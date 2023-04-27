@@ -12,6 +12,7 @@ const clickOutsideRef = (content_ref, toggle_ref) => {
     }
   });
 };
+
 function Dropdown({
   data,
   renderItems,
