@@ -1,5 +1,4 @@
-import React, { useState, useContext } from "react";
-import "../../assets/css/general.css";
+import React from "react";
 import customer_list from "../../assets/json/customers-list.json";
 import Table from "../../components/table/Table";
 import Info from "./info";

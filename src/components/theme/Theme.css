@@ -1,4 +1,4 @@
-.theme {
+/* .theme {
   z-index: 100;
   position: fixed;
   top: 0;
@@ -8,12 +8,33 @@
   height: 100vh;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
     rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
-  /* transition: width 1s; */
+} */
+
+.theme {
+  z-index: 100;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 0;
+  height: 100vh;
+  padding: 32px 24px 32px 24px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
+    rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+  transition: width 0.3s ease-out, transform 0.7s ease-out;
+  transform: translateX(100%);
 }
 
-.theme-icon {
-  cursor: pointer;
+.theme.open {
+  width: 280px;
+  transform: translateX(0%);
 }
+
+.theme_icon {
+  cursor: pointer;
+  font-size: 32px;
+}
+
 ul {
   list-style: none;
 }
@@ -23,25 +44,27 @@ ul li {
   gap: 8px;
 }
 ul li i {
-  font-size: 30px;
+  font-size: 32px;
 }
-.mood-item {
+.mood_item {
   cursor: pointer;
+  padding: 8px;
   transition: all 0.3s;
 }
-.mood-item:hover {
+.mood_item:hover {
   background-color: cyan;
 }
-.mood-item i {
+.mood_item i {
   border-radius: 50%;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
     rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
 }
 
-.color-item {
+.color_item {
   cursor: pointer;
+  padding: 8px;
   transition: all 0.3s;
 }
-.color-item:hover {
+.color_item:hover {
   background-color: cyan;
 }

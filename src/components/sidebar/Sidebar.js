@@ -10,6 +10,14 @@ function Sidebar({ isPadding, setIsPadding }) {
     color: darkTheme ? "#fafafa" : "#444 ",
   };
   const [isOpen, setIsOpen] = React.useState(true);
+
+  // const [isOpen, setIsOpen] = React.useState(
+  //   localStorage.getItem("sidebarOpen") === "true" || false
+  // );
+
+  // React.useEffect(() => {
+  //   localStorage.setItem("sidebarOpen", isOpen);
+  // }, [isOpen]);
   return (
     <div
       className="sidebar-main"
@@ -18,7 +26,6 @@ function Sidebar({ isPadding, setIsPadding }) {
         backgroundColor: themeStyles.backgroundColor,
         color: themeStyles.color,
       }}
-      // style={themeStyles}
     >
       <div className="d-flex justify-content-center gap-3 py-5">
         {isOpen ? (

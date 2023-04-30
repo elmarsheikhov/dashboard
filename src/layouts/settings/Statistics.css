@@ -1,11 +1,11 @@
 .element {
-  width: 160px;
+  width: 140px;
   position: relative;
 }
 
 .element > div {
   height: 100px;
-  border: 1px solid #555;
+  /* border: 1px solid #555; */
 }
 .column {
   border-radius: 13px;
@@ -16,7 +16,6 @@
   transform: translateX(-50%);
   padding: 0 !important;
   opacity: 0.8;
-  border: none !important;
   transition: all 0.6s;
 }
 .column:hover {

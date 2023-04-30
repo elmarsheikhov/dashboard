@@ -9,7 +9,6 @@ function Table({ headData, bodyData, setId }) {
   };
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedLimit, setSelectedLimit] = useState(10);
-  const [itemIndex, setItemIndex] = useState(0);
   const itemsPerPage = Number(selectedLimit);
   const totalPages = Math.ceil(bodyData.length / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
@@ -79,7 +78,7 @@ function Table({ headData, bodyData, setId }) {
         </thead>
         <tbody>
           {slicedData.map((item, index) => (
-            <tr key={index}>
+            <tr key={index} className="">
               {headData.map((key) => {
                 if (key === "image") {
                   return (
@@ -94,19 +93,20 @@ function Table({ headData, bodyData, setId }) {
                   );
                 }
                 return (
-                  <td key={key} className="p-3 text-center">
+                  <td key={key} className="p-3">
                     {typeof item[key] === "object"
-                      ? JSON.stringify(item[key])
+                      ? `rate: ${JSON.stringify(
+                          item[key].rate
+                        )}, count: ${JSON.stringify(item[key].count)}`
                       : item[key]}
                   </td>
                 );
               })}
-              <td className="text-center p-2 ">
+              <td className="text-center p-2">
                 <i
                   className="info-element bx bx-info-circle fs-3 d-flex justify-content-center align-items-center"
                   onClick={() => {
                     setId(index + selectedLimit * (currentPage - 1) + 1);
-                    setItemIndex(index + selectedLimit * (currentPage - 1));
                   }}
                 ></i>
               </td>

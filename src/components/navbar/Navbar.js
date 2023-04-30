@@ -20,19 +20,15 @@ function Navbar({ darkTheme, setDarkTheme }) {
   const renderUserMenu = (item, index) => (
     <div
       key={index}
-      className="d-flex gap-3 justify-content-start align-items-center mb-2"
-      style={{ cursor: "default" }}
+      className="user_menu_item"
+      // style={{ cursor: "pointer" }}
     >
       <i className={`${item.icon} fs-4`}></i>
       <span>{item.content}</span>
     </div>
   );
   const renderNotificationItem = (item, index) => (
-    <div
-      key={index}
-      className="d-flex gap-3 justify-content-start align-items-center mb-2"
-      style={{ cursor: "default" }}
-    >
+    <div key={index} className="notification_menu_item ">
       <i className={`${item.icon} fs-4`}></i>
       <span>{item.content}</span>
     </div>

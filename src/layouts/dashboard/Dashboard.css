@@ -1,11 +1,14 @@
-.box-in-Dashboard {
+.box_in_Dashboard {
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   border-radius: 10px;
   letter-spacing: 0.31px;
+  display: flex;
+  justify-content: start;
+  padding: 24px 16px;
 }
 .chart {
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-  border-radius: 10px;
-  /* max-width: 650px; */
-  margin: 35px auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

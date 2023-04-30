@@ -15,8 +15,8 @@
     "icon": "bx bx-package"
   },
   {
-    "display_name": "Settings",
-    "route": "/settings",
-    "icon": "bx bx-cog"
+    "display_name": "Statistics",
+    "route": "/statistics",
+    "icon": "bx bxs-bar-chart-alt-2"
   }
 ]

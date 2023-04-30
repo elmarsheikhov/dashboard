@@ -1,17 +1,16 @@
-import React, { useState, useEffect, useReducer } from "react";
+import React, { useState, useEffect } from "react";
 import Table from "../../components/table/Table";
 import { Skeleton } from "antd";
 import Info from "./info";
 
 function Products() {
-  const [state, setState] = useReducer();
-
   const [productsData, setProductsData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [id, setId] = React.useState(null);
   const API_LINK = "https://fakestoreapi.com/products";
   const getProducts = async () => {
     try {
+      // const response = await fetch(`${API_LINK}?limit=5`); //limitli sayda data cixarmaq
       const response = await fetch(API_LINK);
 
       if (!response.ok) {

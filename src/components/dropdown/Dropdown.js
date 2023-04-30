@@ -27,12 +27,12 @@ function Dropdown({
   clickOutsideRef(dropdown_content_el, dropdown_toggle_el);
   return (
     <div className="dropdown">
-      <div ref={dropdown_toggle_el} className="dropdown_toggle ">
+      <div ref={dropdown_toggle_el} className="dropdown_toggle">
         {icon ? <i className={`${icon} fs-1`}></i> : null}
-        {badge ? <span className="dropdown_toggle">{badge}</span> : null}
+        {badge ? <span>{badge}</span> : null}
         {renderUser ? renderUser() : null}
       </div>
-      <div ref={dropdown_content_el} className="dropdown_content border">
+      <div ref={dropdown_content_el} className="dropdown_content">
         {data && renderItems
           ? data.map((item, index) => renderItems(item, index))
           : null}

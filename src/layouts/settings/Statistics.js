@@ -1,13 +1,15 @@
-// 0, 30 = sari
-// 30, 60 = yashil
-// 60, 100 = qirmizi
+import React from "react";
+import "./Statistics.css";
+import { ThemeContext } from "../../App";
 
-import React, { useState, useEffect } from "react";
-import "./Setting.css";
-// import { render } from "@testing-library/react";
 function Settings() {
+  const darkTheme = React.useContext(ThemeContext);
+  const themeStyles = {
+    backgroundColor: darkTheme ? "#424242" : "#fafafa",
+    color: darkTheme ? "#fafafa" : "#424242",
+  };
   const [isHovering, setIsHovering] = React.useState(false);
-  const [limits, setLimits] = useState([]);
+  const [limits, setLimits] = React.useState([]);
   const [obj, setObj] = React.useState({
     1: { count: 40 },
     2: { count: 200 },
@@ -47,12 +49,12 @@ function Settings() {
   function renderColumns() {
     return limits
       .slice(0, limits.length - 1)
-      .map((limit, index) => <div key={index} className="bg-dark"></div>);
+      .map((limit, index) => <div key={index}></div>);
   }
   function renderLimits() {
     return limits.map((item, index) => <div className=" ">{item}</div>);
   }
-  useEffect(() => {
+  React.useEffect(() => {
     const newLimits = [
       (max / 4) * 4,
       (max / 4) * 3,
@@ -64,9 +66,9 @@ function Settings() {
   }, [max]);
 
   return (
-    <>
+    <div>
       <h2 className="mb-4 border-bottom text-center py-4"> Weekly Chart</h2>
-      <div className="d-flex ">
+      <div className="d-flex justify-content-center">
         {keys.map((item, index) => (
           <div>
             <div className="d-flex flex-column justify-content-between align-items-center mb-5 gap-2 p-1">
@@ -83,14 +85,15 @@ function Settings() {
                 <i class="bx bx-chevron-down"></i>{" "}
               </button>
             </div>
-            <div className="total">
-              <div className="element">
+            <div className="total" style={themeStyles}>
+              <div className="element border">
                 {renderColumns()}
                 <div
                   onMouseOver={() => setIsHovering(true)}
                   onMouseOut={() => setIsHovering(false)}
                   className="column"
                   style={{
+                    ...themeStyles,
                     height: `${
                       values[index].count <= max
                         ? (values[index].count / max) * 100
@@ -117,13 +120,13 @@ function Settings() {
                 {index === keys.length - 1 ? renderLimits() : null}
               </div>
             </div>
-            <div className=" bg-dark text-center p-2">
+            <div className="text-center p-2">
               {day}/{month}/{year}
             </div>
           </div>
         ))}
       </div>
-    </>
+    </div>
   );
 }
 
