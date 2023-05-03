@@ -14,8 +14,11 @@ function App() {
     setThemeClass(localStorage.getItem("themeMode", "theme-mode-light"));
     setColorClass(localStorage.getItem("colorMode", "theme-mode-light"));
   }, [clickedItem]);
+
+  const data = { themeClass, colorClass };
+
   return (
-    <ThemeContext.Provider value={(themeClass, colorClass)}>
+    <ThemeContext.Provider value={data}>
       <div className={`d-flex ${themeClass} ${colorClass}`}>
         <div className="child-1">
           <Sidebar isPadding={isPadding} setIsPadding={setIsPadding} />

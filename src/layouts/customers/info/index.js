@@ -18,7 +18,7 @@ function Info({ id, setId, customer_list }) {
     }
   }, [id]);
   const themestyle = React.useContext(ThemeContext);
-  console.log(themestyle);
+  console.log(themestyle.themeClass, themestyle.colorClass);
   return customerData ? (
     <div className="elmar ">
       <Modal
@@ -27,7 +27,7 @@ function Info({ id, setId, customer_list }) {
         size="lg"
         aria-labelledby="contained-modal-title-vcenter"
         centered
-        className={themestyle}
+        className={`${themestyle.themeClass} ${themestyle.colorClass}`}
       >
         <div className="elmar ">
           <Modal.Header>
