@@ -4,13 +4,7 @@ import Dashboard from "../layouts/dashboard/Dashboard";
 import Customers from "../layouts/customers/Customers";
 import Products from "../layouts/product/Products";
 import Statistics from "../layouts/settings/Statistics";
-import { ThemeContext } from "../App";
 function Router() {
-  const darkTheme = React.useContext(ThemeContext);
-  const themeStyles = {
-    color: darkTheme ? "#fafafa" : "#555 ",
-    backgroundColor: darkTheme ? "#555 " : "#fafafa",
-  };
   const TABS = [
     {
       path: "/dashboard",
@@ -30,7 +24,7 @@ function Router() {
     },
   ];
   return (
-    <div style={{ ...themeStyles, minHeight: "100vh" }}>
+    <div style={{ minHeight: "100vh" }}>
       <Routes>
         <Route path="*" element={<Navigate to="/dashboard" />} />
         {TABS.map((item, key) => (

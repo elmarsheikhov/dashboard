@@ -1,14 +1,41 @@
+.dashboard {
+  color: var(--txt-color);
+}
+
 .box_in_Dashboard {
-  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  box-shadow: var(--box-shadow);
   border-radius: 10px;
   letter-spacing: 0.31px;
   display: flex;
   justify-content: start;
   padding: 24px 16px;
+  background: radial-gradient(
+      100% 100% at top left,
+      var(--main-color) 98%,
+      var(--second-bg)
+    ),
+    red;
+  background-clip: text, text, padding-box, padding-box, text;
+  background-size: 0% 0%;
+  background-position: top left, bottom right;
+  background-repeat: no-repeat;
+  transition: all 0.5s;
+  background-color: var(--second-bg) !important;
+}
+
+.box_in_Dashboard:hover {
+  background-size: 50% 100%;
 }
 .chart {
-  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  box-shadow: var(--box-shadow);
+  background-color: var(--second-bg);
+  color: var(--txt-color) !important;
   display: flex;
   justify-content: center;
   align-items: center;
+  border-radius: 10px;
+  /* transition: all 0.3s; */
 }
+/* .chart:hover {
+  background-color: var(--main-color);
+} */

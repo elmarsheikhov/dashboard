@@ -33,6 +33,21 @@ textarea {
 .description_textarea::-webkit-scrollbar-thumb:hover {
   background-color: #555;
 }
+
 .form-control:focus {
   box-shadow: none;
+  border: 1px solid var(--main-color) !important;
+  background-color: transparent !important;
+  color: var(--txt-color);
+}
+
+.elmar {
+  /* font-size: 40px !important; */
+  /* border-radius: var(--border-radius); */
+  color: var(--txt-color) !important;
+  background-color: var(--second-bg) !important;
+}
+.eldar {
+  background-color: var(--main-bg);
+  color: var(--txt-color);
 }

@@ -2,14 +2,8 @@ import React from "react";
 import status_card from "../../assets/json/status-card-data.json";
 import Chart from "react-apexcharts";
 import "./Dashboard.css";
-import { ThemeContext } from "../../App";
 
 function Dashboard() {
-  const darkTheme = React.useContext(ThemeContext);
-  const themeStyles = {
-    backgroundColor: darkTheme ? "#424242" : "#fafafa",
-    color: darkTheme ? "#fafafa" : "#424242",
-  };
   const [options, setOptions] = React.useState({
     chart: {
       height: 280,
@@ -45,25 +39,25 @@ function Dashboard() {
       ],
     },
   });
-  React.useEffect(() => {
-    setOptions({
-      ...options,
-      theme: {
-        mode: darkTheme ? "dark" : "light",
-      },
-      colors: [themeStyles.color],
-    });
-  }, [darkTheme, themeStyles.color]);
+  // React.useEffect(() => {
+  //   setOptions({
+  //     ...options,
+  //     theme: {
+  //       mode: darkTheme ? "dark" : "light",
+  //     },
+  //     colors: [],
+  //   });
+  // }, []);
 
   return (
-    <div>
+    <div className="dashboard">
       <h1 className="mb-5">Dashboard</h1>
       <div class="row g-5 mb-5 px-3">
         <div class="col-xl-6 col-lg-12">
           <div class="row g-4">
             {status_card.map((item, index) => (
               <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                <div className="box_in_Dashboard" style={themeStyles}>
+                <div className="box_in_Dashboard">
                   <div className="p-2 d-flex align-items-center ">
                     <i className={`${item.icon} fs-1`}></i>
                   </div>
@@ -76,9 +70,14 @@ function Dashboard() {
             ))}
           </div>
         </div>
-        <div class="chart col-xl-6 col-lg-12" style={themeStyles}>
+        <div class="chart col-xl-6 col-lg-12">
           <Chart
-            options={options}
+            options={{
+              ...options,
+              // theme: {
+              //   mode: true ? "dark" : "light",
+              // },
+            }}
             series={options.series}
             height="90%"
             width="200%"

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Table from "../../components/table/Table";
+import "./Products.css";
 import { Skeleton } from "antd";
 import Info from "./info";
 
@@ -36,8 +37,8 @@ function Products() {
   const bodyData = productsData;
 
   return (
-    <div>
-      <h2 className="mb-5">Top Products</h2>
+    <div className="product">
+      <h1 className="mb-5">Top Products</h1>
       {isLoading ? (
         <div>
           <div className=" d-flex gap-5">

@@ -1,13 +1,7 @@
 import React from "react";
 import "./Statistics.css";
-import { ThemeContext } from "../../App";
 
 function Settings() {
-  const darkTheme = React.useContext(ThemeContext);
-  const themeStyles = {
-    backgroundColor: darkTheme ? "#424242" : "#fafafa",
-    color: darkTheme ? "#fafafa" : "#424242",
-  };
   const [isHovering, setIsHovering] = React.useState(false);
   const [limits, setLimits] = React.useState([]);
   const [obj, setObj] = React.useState({
@@ -66,44 +60,49 @@ function Settings() {
   }, [max]);
 
   return (
-    <div>
-      <h2 className="mb-4 border-bottom text-center py-4"> Weekly Chart</h2>
-      <div className="d-flex justify-content-center">
+    <div className="statistics">
+      <h1 className="mb-5 "> Statistics</h1>
+      <div className="d-flex justify-content-center ">
         {keys.map((item, index) => (
           <div>
             <div className="d-flex flex-column justify-content-between align-items-center mb-5 gap-2 p-1">
               <button
-                className="button btn btn-primary w-75 d-flex justify-content-center align-items-center"
+                className="button w-75 d-flex justify-content-center align-items-center"
                 onClick={() => handleIncrement(index)}
               >
                 <i class="bx bx-chevron-up"></i>{" "}
               </button>
               <button
-                className="button btn btn-primary w-50 d-flex justify-content-center align-items-center"
+                className="button w-50 d-flex justify-content-center align-items-center"
                 onClick={() => handleDecrement(index)}
               >
                 <i class="bx bx-chevron-down"></i>{" "}
               </button>
             </div>
-            <div className="total" style={themeStyles}>
-              <div className="element border">
+            <div className="total">
+              <div className="element">
+                <div></div>
+                <div className="limit_column">{(max / 4) * 5}</div>
+              </div>
+            </div>
+
+            <div className="total">
+              <div className="element">
                 {renderColumns()}
                 <div
                   onMouseOver={() => setIsHovering(true)}
                   onMouseOut={() => setIsHovering(false)}
                   className="column"
                   style={{
-                    ...themeStyles,
                     height: `${
                       values[index].count <= max
                         ? (values[index].count / max) * 100
                         : null
                     }%`,
-
                     backgroundColor:
-                      values[index].count < 30
+                      values[index].count < max / 3
                         ? "yellow"
-                        : values[index].count < 60
+                        : values[index].count < (2 * max) / 3
                         ? "green"
                         : "red",
                   }}

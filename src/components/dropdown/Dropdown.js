@@ -37,9 +37,7 @@ function Dropdown({
           ? data.map((item, index) => renderItems(item, index))
           : null}
         {renderFooter ? (
-          <button className="dropdown_footer btn btn-primary">
-            {renderFooter()}
-          </button>
+          <button className="dropdown_footer">{renderFooter()}</button>
         ) : null}
       </div>
     </div>

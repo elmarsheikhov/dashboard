@@ -1,8 +1,11 @@
 .child-1 {
   flex-basis: auto;
   position: fixed;
+  background-color: var(--second-bg);
+  color: var(--txt-color);
 }
 .child-2 {
+  background-color: var(--main-bg);
   display: flex;
   flex-direction: column;
   padding-right: 32px;

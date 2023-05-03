@@ -1,12 +1,17 @@
+.navbar {
+  color: var(--txt-color);
+}
 .parent {
   position: relative;
 }
 .navbar-input {
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  box-shadow: var(--box-shadow);
   border: none;
   outline: none;
-  border-radius: 10px;
+  border-radius: 7px;
   width: 260px;
+  background-color: var(--second-bg);
+  color: var(--txt-color);
 }
 .search-icon {
   outline: none;
@@ -15,6 +20,11 @@
   top: 50%;
   right: 3%;
   transform: translateY(-50%);
-  color: blue;
+  color: var(--main-color);
   cursor: pointer;
+}
+
+.cat_image {
+  width: 60px;
+  border-radius: 50%;
 }

@@ -6,14 +6,14 @@ import user_menu from "../../assets/json/user_menus.json";
 import notification from "../../assets/json/notification.json";
 import catImage from "../../assets/images/cat-img.jpg";
 
-function Navbar({ darkTheme, setDarkTheme }) {
+function Navbar({ clickedItem, setClickedItem }) {
   const user = {
     name: "Elmar Sheikhov",
     image: catImage,
   };
   const renderUser = (user) => (
     <div className="d-flex align-items-center gap-3">
-      <img src={catImage} width={60} style={{ borderRadius: "35%" }} />
+      <img className="cat_image" src={catImage} />
       <div>{user.name}</div>
     </div>
   );
@@ -36,7 +36,7 @@ function Navbar({ darkTheme, setDarkTheme }) {
 
   const [isOpen, setIsOpen] = React.useState(false);
   return (
-    <div className="py-3 mb-4 d-flex justify-content-between align-items-center">
+    <div className="navbar py-3 mb-4 d-flex justify-content-between align-items-center">
       <div className="parent">
         <input
           className="navbar-input py-2 px-3 "
@@ -77,8 +77,8 @@ function Navbar({ darkTheme, setDarkTheme }) {
       <Theme
         isOpen={isOpen}
         setIsOpen={setIsOpen}
-        darkTheme={darkTheme}
-        setDarkTheme={setDarkTheme}
+        clickedItem={clickedItem}
+        setClickedItem={setClickedItem}
       />
     </div>
   );

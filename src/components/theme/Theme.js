@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import "./Theme.css";
-import { ThemeContext } from "../../App";
+import "../../assets/css/theme.css";
+import "../../assets/css/index.css";
 const mode_settings = [
   {
     id: "light",
@@ -48,13 +49,32 @@ const color_settings = [
     class: "theme-color-orange",
   },
 ];
-function Theme({ isOpen, setIsOpen, setDarkTheme }) {
-  const themeStyles = {
-    backgroundColor: React.useContext(ThemeContext) ? "#444" : "#fafafa ",
-    color: React.useContext(ThemeContext) ? "#fafafa" : "#444",
-  };
-  const refing = useRef();
 
+function Theme({ isOpen, setIsOpen, clickedItem, setClickedItem }) {
+  const [currMode, setCurrMode] = React.useState("light");
+  const [currColor, setCurrColor] = React.useState("blue");
+  const setMode = (mode) => {
+    setCurrMode(mode.id);
+    localStorage.setItem("themeMode", mode.class);
+  };
+  const setColor = (color) => {
+    setCurrColor(color.id);
+    localStorage.setItem("colorMode", color.class);
+  };
+  React.useEffect(() => {
+    const themeClass = mode_settings.find(
+      (e) => e.class === localStorage.getItem("themeMode", "theme-mode-light")
+    );
+    const colorClass = color_settings.find(
+      (e) => e.class === localStorage.getItem("colorMode", "theme-mode-light")
+    );
+
+    if (themeClass !== undefined) setCurrMode(themeClass.id);
+
+    if (colorClass !== undefined) setCurrColor(colorClass.id);
+  }, []);
+
+  const refing = useRef();
   useEffect(() => {
     document.addEventListener("mousedown", (e) => {
       if (refing.current && !refing.current.contains(e.target)) {
@@ -63,16 +83,9 @@ function Theme({ isOpen, setIsOpen, setDarkTheme }) {
     });
   }, [refing]);
 
-  const moods = ["White", "Black"];
-  const colors = ["Blue", "Red", "Cyan", "Green", "Orange"];
-
   return (
     <React.Fragment>
-      <div
-        ref={refing}
-        className={`theme ${isOpen ? "open" : ""}`}
-        style={themeStyles}
-      >
+      <div ref={refing} className={`theme ${isOpen ? "open" : ""}`}>
         <div className="theme-header d-flex justify-content-between align-items-center gap-2 ">
           <h4>Theme settings</h4>
           <i
@@ -84,13 +97,16 @@ function Theme({ isOpen, setIsOpen, setDarkTheme }) {
           <div className="">
             <div>Choose mood</div>
             <ul className="d-flex flex-column gap-3 mt-3 ">
-              {moods.map((item, index) => (
+              {mode_settings.map((item, index) => (
                 <li
                   className="mood_item"
-                  onClick={() => setDarkTheme(item === "Black" ? true : false)}
+                  onClick={() => (setMode(item), setClickedItem(!clickedItem))}
                 >
-                  <i class="bx bxs-circle" style={{ color: item }}></i>
-                  <span>{item === "White" ? "Light" : "Dark"}</span>
+                  <i
+                    className="bx bxs-circle"
+                    style={{ color: item.id === "light" ? "white" : "black" }}
+                  ></i>
+                  <span>{item.name}</span>
                 </li>
               ))}
             </ul>
@@ -98,10 +114,17 @@ function Theme({ isOpen, setIsOpen, setDarkTheme }) {
           <div className="mt-5">
             <div>Choose color</div>
             <ul className=" d-flex mt-3 flex-column gap-3">
-              {colors.map((item, index) => (
-                <li className="color_item ">
-                  <i class="bx bxs-paint-roll" style={{ color: item }}></i>
-                  <span>{item}</span>
+              {color_settings.map((item, index) => (
+                <li
+                  className="color_item"
+                  onClick={() => (setColor(item), setClickedItem(!clickedItem))}
+                >
+                  <i
+                    className={`bx bxs-paint-roll`}
+                    style={{ color: `${item.id}` }}
+                  ></i>
+
+                  <span>{item.name}</span>
                 </li>
               ))}
             </ul>

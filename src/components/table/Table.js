@@ -1,12 +1,6 @@
 import React, { useState } from "react";
 import "./Table.css";
-import { ThemeContext } from "../../App";
 function Table({ headData, bodyData, setId }) {
-  const darkTheme = React.useContext(ThemeContext);
-  const themeStyles = {
-    backgroundColor: darkTheme ? "#444" : "#fafafa",
-    color: darkTheme ? "#fafafa" : "#444",
-  };
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedLimit, setSelectedLimit] = useState(10);
   const itemsPerPage = Number(selectedLimit);
@@ -35,8 +29,6 @@ function Table({ headData, bodyData, setId }) {
             name="limit"
             value={selectedLimit}
             onChange={(event) => setSelectedLimit(event.target.value)}
-            style={themeStyles}
-            className=""
           >
             <option value="5">5</option>
             <option value="10">10</option>
@@ -62,10 +54,17 @@ function Table({ headData, bodyData, setId }) {
       </div>
     );
   };
+  // const filteredData = slicedData.filter((item) =>
+  //   item.name
+  //     .toLowerCase()
+  //     .includes(
+  //       searchQuery && searchQuery.toLowerCase ? searchQuery.toLowerCase() : ""
+  //     )
+  // );
 
   return (
     <div className="mb-4">
-      <table className="table mb-3" style={themeStyles}>
+      <table className="table mb-3">
         <thead>
           <tr>
             {headData.map((item, index, headData) => (
@@ -78,7 +77,7 @@ function Table({ headData, bodyData, setId }) {
         </thead>
         <tbody>
           {slicedData.map((item, index) => (
-            <tr key={index} className="">
+            <tr key={index}>
               {headData.map((key) => {
                 if (key === "image") {
                   return (
@@ -93,18 +92,22 @@ function Table({ headData, bodyData, setId }) {
                   );
                 }
                 return (
-                  <td key={key} className="p-3">
+                  <td
+                    key={key}
+                    className="p-3"
+                    style={{ whiteSpace: "pre-line", maxWidth: "500px" }}
+                  >
                     {typeof item[key] === "object"
                       ? `rate: ${JSON.stringify(
                           item[key].rate
-                        )}, count: ${JSON.stringify(item[key].count)}`
+                        )}\ncount: ${JSON.stringify(item[key].count)}`
                       : item[key]}
                   </td>
                 );
               })}
               <td className="text-center p-2">
                 <i
-                  className="info-element bx bx-info-circle fs-3 d-flex justify-content-center align-items-center"
+                  className="info_icon bx bx-info-circle"
                   onClick={() => {
                     setId(index + selectedLimit * (currentPage - 1) + 1);
                   }}
