@@ -1,6 +1,6 @@
 :root {
   --main-bg: #ffffff;
-  --second-bg: #fafafb;
+  --second-bg: #fbfbfb;
   --txt-color: #455560;
   --txt-white: #fff;
   --main-color: #349eff;
@@ -8,13 +8,13 @@
   --box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 
   --main-bg-light: #ffffff;
-  --second-bg-light: #fafafb;
+  --second-bg-light: #f1f1f1;
   --txt-color-light: #455560;
   --box-shadow-light: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 
   --main-bg-dark: #2d2d2d;
   --second-bg-dark: #202020;
-  --txt-color-dark: #bbbbbb;
+  --txt-color-dark: #ede;
   --box-shadow-dark: rgba(0, 0, 0, 0.2) 0px 5px 10px;
 
   --main-color-blue: #349eff;

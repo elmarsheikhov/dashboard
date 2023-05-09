@@ -1,13 +1,21 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Table from "../../components/table/Table";
 import "./Products.css";
-import { Skeleton } from "antd";
+import TableSkeleton from "../../components/skeleton/TableSkeleton";
 import Info from "./info";
+import Basket from "../../components/basket/Basket";
 
 function Products() {
-  const [productsData, setProductsData] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [productsData, setProductsData] = React.useState([]);
+  const [isLoading, setIsLoading] = React.useState(true);
   const [id, setId] = React.useState(null);
+  const [productCount, setProductCount] = React.useState(0);
+  const [basketProducts, setBasketProducts] = React.useState([]);
+  const [searchQuery, setSearchQuery] = React.useState("");
+  const [showTooltip, setShowTooltip] = React.useState(false);
+  const [basketIsOpen, setBasketIsOpen] = React.useState(false);
+  const [basket, setBasket] = React.useState([]);
+
   const API_LINK = "https://fakestoreapi.com/products";
   const getProducts = async () => {
     try {
@@ -23,10 +31,10 @@ function Products() {
       setIsLoading(false);
     } catch (error) {
       console.log(error);
-      setIsLoading(false);
+      setIsLoading(true);
     }
   };
-  useEffect(() => {
+  React.useEffect(() => {
     getProducts();
   }, []);
 
@@ -36,37 +44,82 @@ function Products() {
       : [];
   const bodyData = productsData;
 
+  const numberOfRows = 8;
+  const renderedRows = [...Array(numberOfRows)].map((e, i) => (
+    <div>
+      <TableSkeleton />
+    </div>
+  ));
+  const filteredData = bodyData.filter((item) =>
+    item.title.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
+  const tooltipStyle = {
+    display: showTooltip ? "block" : "none",
+  };
+  const string = "Add";
   return (
     <div className="product">
+      <Basket
+        basketProducts={basketProducts}
+        basketIsOpen={basketIsOpen}
+        setBasketIsOpen={setBasketIsOpen}
+      />
+
       <h1 className="mb-5">Top Products</h1>
-      {isLoading ? (
-        <div>
-          <div className=" d-flex gap-5">
-            <Skeleton active round style={{ width: "400px" }} />
-            <Skeleton active round style={{ width: "400px" }} />
-            <Skeleton active round style={{ width: "400px" }} />
-          </div>
-          <div className=" d-flex gap-5">
-            <Skeleton active round style={{ width: "400px" }} />
-            <Skeleton active round style={{ width: "400px" }} />
-            <Skeleton active round style={{ width: "400px" }} />
-          </div>
-          <div className=" d-flex gap-5">
-            <Skeleton active round style={{ width: "400px" }} />
-            <Skeleton active round style={{ width: "400px" }} />
-            <Skeleton active round style={{ width: "400px" }} />
-          </div>
-          <div className=" d-flex gap-5">
-            <Skeleton active round style={{ width: "400px" }} />
-            <Skeleton active round style={{ width: "400px" }} />
-            <Skeleton active round style={{ width: "400px" }} />
+      <div className="mb-5 d-flex justify-content-between">
+        <div className="search_box">
+          <input
+            className="search_input py-2 px-3 "
+            placeholder="Search by title..."
+            value={searchQuery}
+            onChange={(event) => setSearchQuery(event.target.value)}
+          />
+          <i class="search_icon bx bx-search-alt"></i>
+
+          <i
+            className="info_icon bx bx-info-circle"
+            onMouseEnter={() => {
+              setShowTooltip(true);
+            }}
+            onMouseLeave={() => {
+              setShowTooltip(false);
+            }}
+          ></i>
+          <div className="input_info_tooltip" style={tooltipStyle}>
+            Search with simple words. Example: jacket, steel, SSD...
           </div>
         </div>
+
+        <div
+          className="parent mx-3"
+          onClick={() => {
+            setBasketIsOpen(!basketIsOpen);
+          }}
+        >
+          <i class="basket_icon bx bx-basket fs-1"></i>
+          <div className="child">{productCount} </div>
+        </div>
+      </div>
+
+      {isLoading ? (
+        <div> {renderedRows}</div>
       ) : (
-        <>
-          <Table headData={headData} bodyData={bodyData} setId={setId} />
+        <div>
+          <Table
+            headData={headData}
+            bodyData={filteredData}
+            setId={setId}
+            productCount={productCount}
+            setProductCount={setProductCount}
+            basketProducts={basketProducts}
+            setBasketProducts={setBasketProducts}
+            basket={basket}
+            setBasket={setBasket}
+            string={string}
+          />
           <Info id={id} setId={setId} api={API_LINK} />
-        </>
+        </div>
       )}
     </div>
   );

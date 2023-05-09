@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React from "react";
 import "./Theme.css";
 import "../../assets/css/theme.css";
 import "../../assets/css/index.css";
@@ -53,6 +53,7 @@ const color_settings = [
 function Theme({ isOpen, setIsOpen, clickedItem, setClickedItem }) {
   const [currMode, setCurrMode] = React.useState("light");
   const [currColor, setCurrColor] = React.useState("blue");
+
   const setMode = (mode) => {
     setCurrMode(mode.id);
     localStorage.setItem("themeMode", mode.class);
@@ -74,8 +75,8 @@ function Theme({ isOpen, setIsOpen, clickedItem, setClickedItem }) {
     if (colorClass !== undefined) setCurrColor(colorClass.id);
   }, []);
 
-  const refing = useRef();
-  useEffect(() => {
+  const refing = React.useRef();
+  React.useEffect(() => {
     document.addEventListener("mousedown", (e) => {
       if (refing.current && !refing.current.contains(e.target)) {
         setIsOpen(false);
@@ -88,8 +89,9 @@ function Theme({ isOpen, setIsOpen, clickedItem, setClickedItem }) {
       <div ref={refing} className={`theme ${isOpen ? "open" : ""}`}>
         <div className="theme-header d-flex justify-content-between align-items-center gap-2 ">
           <h4>Theme settings</h4>
+
           <i
-            class="theme_icon bx bx-window-close"
+            class="theme_icon bx bx-message-square-x"
             onClick={() => setIsOpen(false)}
           ></i>
         </div>
@@ -99,7 +101,11 @@ function Theme({ isOpen, setIsOpen, clickedItem, setClickedItem }) {
             <ul className="d-flex flex-column gap-3 mt-3 ">
               {mode_settings.map((item, index) => (
                 <li
-                  className="mood_item"
+                  className={
+                    currMode === item.id
+                      ? "mood_item selected_mood"
+                      : "mood_item"
+                  }
                   onClick={() => (setMode(item), setClickedItem(!clickedItem))}
                 >
                   <i
@@ -116,14 +122,17 @@ function Theme({ isOpen, setIsOpen, clickedItem, setClickedItem }) {
             <ul className=" d-flex mt-3 flex-column gap-3">
               {color_settings.map((item, index) => (
                 <li
-                  className="color_item"
+                  className={
+                    currColor === item.id
+                      ? "color_item selected_color"
+                      : "color_item"
+                  }
                   onClick={() => (setColor(item), setClickedItem(!clickedItem))}
                 >
                   <i
                     className={`bx bxs-paint-roll`}
                     style={{ color: `${item.id}` }}
                   ></i>
-
                   <span>{item.name}</span>
                 </li>
               ))}

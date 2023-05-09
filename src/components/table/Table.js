@@ -1,8 +1,20 @@
 import React, { useState } from "react";
 import "./Table.css";
-function Table({ headData, bodyData, setId }) {
+function Table({
+  headData,
+  bodyData,
+  setId,
+  basket,
+  setBasket,
+  setBasketProducts,
+  productCount,
+  setProductCount,
+  string,
+}) {
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedLimit, setSelectedLimit] = useState(10);
+  const [clicked, setClicked] = React.useState(false);
+
   const itemsPerPage = Number(selectedLimit);
   const totalPages = Math.ceil(bodyData.length / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
@@ -15,6 +27,21 @@ function Table({ headData, bodyData, setId }) {
   const handlePageClick = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
+  //This is for Products
+  const handleBasket = (e, item) => {
+    if (e.target.checked) {
+      setBasket([...basket, item]);
+      setProductCount(productCount + 1);
+    } else {
+      setBasket(basket.filter((basketItem) => basketItem !== item));
+      setProductCount(productCount - 1);
+    }
+  };
+  React.useEffect(() => {
+    if (basket) {
+      setBasketProducts(basket);
+    }
+  }, [basket]);
 
   const renderPagination = () => {
     const pageNumbers = [];
@@ -54,13 +81,6 @@ function Table({ headData, bodyData, setId }) {
       </div>
     );
   };
-  // const filteredData = slicedData.filter((item) =>
-  //   item.name
-  //     .toLowerCase()
-  //     .includes(
-  //       searchQuery && searchQuery.toLowerCase ? searchQuery.toLowerCase() : ""
-  //     )
-  // );
 
   return (
     <div className="mb-4">
@@ -73,6 +93,7 @@ function Table({ headData, bodyData, setId }) {
               </th>
             ))}
             <th className=" p-3 text-center ">Info</th>
+            <th className=" p-3 text-center">{string}</th>
           </tr>
         </thead>
         <tbody>
@@ -107,11 +128,22 @@ function Table({ headData, bodyData, setId }) {
               })}
               <td className="text-center p-2">
                 <i
-                  className="info_icon bx bx-info-circle"
+                  className="table_icon  bx bx-info-circle"
                   onClick={() => {
                     setId(index + selectedLimit * (currentPage - 1) + 1);
                   }}
                 ></i>
+              </td>
+              <td className="text-center p-2">
+                <input
+                  className="checkbox"
+                  type="checkbox"
+                  checked={
+                    basket &&
+                    basket.some((basketItem) => basketItem.id === item.id)
+                  }
+                  onChange={(e) => handleBasket(e, item)}
+                />
               </td>
             </tr>
           ))}

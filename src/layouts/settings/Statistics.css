@@ -60,3 +60,30 @@
 .button:hover {
   background-color: var(--main-color);
 }
+
+.count_tooltip {
+  position: absolute;
+  top: -80px;
+  left: 50%;
+  transform: translateX(-50%);
+  right: -240px;
+  width: max-content;
+  font-size: 12px;
+  border-radius: var(--border-radius);
+  letter-spacing: 0.4px;
+  padding: 4px 8px;
+  text-align: center;
+  background-color: var(--main-bg);
+}
+.count_tooltip:before {
+  content: "";
+  position: absolute;
+  bottom: -18px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 18px 18px 0 18px;
+  border-color: var(--main-bg) transparent transparent transparent;
+}

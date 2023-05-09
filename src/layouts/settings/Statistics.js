@@ -58,6 +58,9 @@ function Settings() {
     ];
     setLimits(newLimits);
   }, [max]);
+  const tooltipStyle = {
+    display: isHovering ? "block" : "none",
+  };
 
   return (
     <div className="statistics">
@@ -107,11 +110,9 @@ function Settings() {
                         : "red",
                   }}
                 >
-                  {isHovering && (
-                    <div className="hover_bar">
-                      <p>count:{values[index].count}</p>
-                    </div>
-                  )}
+                  <div className="hover_bar count_tooltip" style={tooltipStyle}>
+                    <p className="">count:{values[index].count}</p>
+                  </div>
                 </div>
               </div>
               <div className="limit_column">

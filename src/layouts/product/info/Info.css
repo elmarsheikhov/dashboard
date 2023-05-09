@@ -35,4 +35,12 @@ textarea {
 }
 .form-control:focus {
   box-shadow: none;
+  border: 1px solid var(--second-color) !important;
+  background-color: transparent !important;
+  color: var(--txt-color) !important;
+}
+
+.info_modal_theme {
+  color: var(--txt-color) !important;
+  background-color: var(--second-bg) !important;
 }

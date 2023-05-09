@@ -24,7 +24,7 @@ tbody tr:last-child td {
   border-bottom: none !important;
 }
 tbody tr {
-  transition: all 0.2s;
+  transition: background-color 0.2s;
 }
 tbody tr:hover {
   color: var(--txt-white);
@@ -60,7 +60,7 @@ tbody tr td {
   padding: 4px;
 }
 
-.info_icon {
+.table_icon {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -68,9 +68,39 @@ tbody tr td {
   cursor: pointer;
   transition: all 0.3s;
 }
-.info_icon:hover {
-  color: var(--txt-white);
-}
+
 .head_elements {
   text-transform: uppercase;
+}
+
+input[type="checkbox"] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  border: 2px solid var(--txt-color);
+  border-radius: 5px;
+  outline: none;
+  transition: all 0.3s ease-in-out;
+  margin-right: 5px;
+  position: relative;
+}
+
+input[type="checkbox"]::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 4px;
+  height: 4px;
+  background-color: var(--txt-white);
+  border: 5px solid var(--txt-color);
+  opacity: 0;
+  transition: all 0.3s ease-in-out;
+}
+
+input[type="checkbox"]:checked::before {
+  opacity: 1;
 }

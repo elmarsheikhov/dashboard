@@ -24,7 +24,19 @@
   cursor: pointer;
 }
 
-.cat_image {
-  width: 60px;
+.image {
+  width: 80px;
   border-radius: 50%;
+  border: 3px solid var(--main-color);
+  padding: 2px;
+}
+
+.admin_name {
+  color: var(--main-color);
+}
+.dropdown_item {
+  transition: all 0.3s;
+}
+.dropdown_item:hover {
+  color: var(--main-color);
 }
