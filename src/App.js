@@ -7,7 +7,10 @@ import { theme } from "antd";
 const ThemeContext = React.createContext();
 function App() {
   const [clickedItem, setClickedItem] = React.useState(false);
-  const [isPadding, setIsPadding] = React.useState(true);
+  const [isOpen, setIsOpen] = React.useState(
+    localStorage.getItem("sidebarOpen") === "true" || false
+  );
+  const [isPadding, setIsPadding] = React.useState(isOpen);
   const [themeClass, setThemeClass] = React.useState(null);
   const [colorClass, setColorClass] = React.useState(null);
   useEffect(() => {

@@ -6,7 +6,7 @@ import { ThemeContext } from "../../../App";
 import { theme } from "antd";
 function Info({ id, setId, customer_list }) {
   const themestyle = React.useContext(ThemeContext);
-  console.log(themestyle.themeClass, themestyle.colorClass);
+  // console.log(themestyle.themeClass, themestyle.colorClass);
   const [customerData, setCustomerData] = React.useState([]);
   const [show, setShow] = React.useState(false);
   const keys = Object.keys(customerData);
@@ -28,7 +28,7 @@ function Info({ id, setId, customer_list }) {
         size="lg"
         aria-labelledby="contained-modal-title-vcenter"
         centered
-        className={`${themestyle.themeClass} ${themestyle.colorClass} `}
+        className={`${themestyle.themeClass} ${themestyle.colorClass}  border`}
       >
         <div className="info_modal_theme ">
           <Modal.Header>

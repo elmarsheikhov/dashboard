@@ -9,7 +9,7 @@ import image from "../../assets/images/image.jpg";
 
 function Navbar({ clickedItem, setClickedItem }) {
   const user = {
-    name: "Elmar Sheikhov",
+    name: "Mike Tyson",
     image: image,
   };
   const renderUser = (user) => (

@@ -46,15 +46,16 @@ function Settings() {
       .map((limit, index) => <div key={index}></div>);
   }
   function renderLimits() {
-    return limits.map((item, index) => <div className=" ">{item}</div>);
+    return limits.map((item, index) => (
+      <div className=" ">{Math.floor(item)}</div>
+    ));
   }
   React.useEffect(() => {
     const newLimits = [
-      (max / 4) * 4,
-      (max / 4) * 3,
-      (max / 4) * 2,
-      (max / 4) * 1,
-      (max / 4) * 0,
+      (max / 3) * 3,
+      (max / 3) * 2,
+      (max / 3) * 1,
+      (max / 3) * 0,
     ];
     setLimits(newLimits);
   }, [max]);
@@ -85,7 +86,7 @@ function Settings() {
             <div className="total">
               <div className="element">
                 <div></div>
-                <div className="limit_column">{(max / 4) * 5}</div>
+                <div className="limit_column">{Math.floor((max / 3) * 4)}</div>
               </div>
             </div>
 

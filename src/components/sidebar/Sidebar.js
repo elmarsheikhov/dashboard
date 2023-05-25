@@ -2,16 +2,27 @@ import React from "react";
 import "../sidebar/Sidebar.css";
 import sidebarlinks from "../../assets/json/sidebar_routes.json";
 import { NavLink } from "react-router-dom";
+import logo from "../../assets/images/seniorlogohr.svg";
+import logoDark from "../../assets/images/Logo.png";
 function Sidebar({ isPadding, setIsPadding }) {
-  const [isOpen, setIsOpen] = React.useState(true);
+  // const themestyle = React.useContext(ThemeContext);
 
-  // const [isOpen, setIsOpen] = React.useState(
-  //   localStorage.getItem("sidebarOpen") === "true" || false
-  // );
+  // const [isOpen, setIsOpen] = React.useState(true);
 
-  // React.useEffect(() => {
-  //   localStorage.setItem("sidebarOpen", isOpen);
-  // }, [isOpen]);
+  const [isOpen, setIsOpen] = React.useState(
+    localStorage.getItem("sidebarOpen") === "true" || false
+  );
+  const [isDarkMode, setIsDarkMode] = React.useState(
+    localStorage.getItem("themeMode") === "theme-mode-dark" || false
+  );
+  // console.log(isDarkMode);
+  const logoSrc = isDarkMode ? logoDark : logo;
+  React.useEffect(() => {
+    localStorage.setItem("sidebarOpen", isOpen);
+  }, [isOpen]);
+  React.useEffect(() => {
+    setIsDarkMode(localStorage.getItem("themeMode") === "theme-mode-dark");
+  }, []);
   return (
     <div
       className="sidebar-main"
@@ -20,13 +31,13 @@ function Sidebar({ isPadding, setIsPadding }) {
       }}
     >
       <div className="d-flex justify-content-center gap-3 py-5">
-        {isOpen ? <h1>Brand</h1> : null}
+        {isOpen && <img className="w-50" src={logoSrc} alt="Logo" />}
 
         <div
           className="d-flex justify-content-center align-items-center"
           onClick={() => {
             setIsOpen(!isOpen);
-            setIsPadding(!isPadding);
+            setIsPadding(!isOpen);
           }}
         >
           {/* <img className="d-lg-none" src={logohalf} style={{ width: "32px" }} /> */}
