@@ -3,7 +3,8 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import Dashboard from "../layouts/dashboard/Dashboard";
 import Customers from "../layouts/customers/Customers";
 import Products from "../layouts/product/Products";
-import Statistics from "../layouts/settings/Statistics";
+import Statistics from "../layouts/statistics/Statistics";
+import Settings from "../layouts/settings/Settings";
 function Router() {
   const TABS = [
     {
@@ -21,6 +22,10 @@ function Router() {
     {
       path: "/statistics",
       element: <Statistics />,
+    },
+    {
+      path: "/settings",
+      element: <Settings />,
     },
   ];
   return (

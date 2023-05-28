@@ -5,38 +5,42 @@ import "./Dashboard.css";
 
 function Dashboard() {
   const [options, setOptions] = React.useState({
+    series: [
+      {
+        name: "Online Customer",
+        data: [31, 40, 28, 51, 42, 109, 100],
+      },
+      {
+        name: "Story Customer",
+        data: [11, 32, 45, 32, 34, 52, 41],
+      },
+    ],
     chart: {
-      height: 280,
+      height: 350,
       type: "area",
     },
     dataLabels: {
       enabled: false,
     },
-    series: [
-      {
-        name: "Series 1",
-        data: [45, 52, 38, 45, 19, 23, 2],
-      },
-    ],
-    fill: {
-      type: "gradient",
-      gradient: {
-        shadeIntensity: 1,
-        opacityFrom: 0.7,
-        opacityTo: 0.9,
-        stops: [0, 90, 100],
-      },
+    stroke: {
+      curve: "smooth",
     },
     xaxis: {
+      type: "datetime",
       categories: [
-        "01 Jan",
-        "02 Jan",
-        "03 Jan",
-        "04 Jan",
-        "05 Jan",
-        "06 Jan",
-        "07 Jan",
+        "2018-09-19T00:00:00.000Z",
+        "2018-09-19T01:30:00.000Z",
+        "2018-09-19T02:30:00.000Z",
+        "2018-09-19T03:30:00.000Z",
+        "2018-09-19T04:30:00.000Z",
+        "2018-09-19T05:30:00.000Z",
+        "2018-09-19T06:30:00.000Z",
       ],
+    },
+    tooltip: {
+      x: {
+        format: "dd/MM/yy HH:mm",
+      },
     },
   });
   // React.useEffect(() => {

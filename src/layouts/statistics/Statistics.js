@@ -1,7 +1,7 @@
 import React from "react";
 import "./Statistics.css";
 
-function Settings() {
+function Statistics() {
   const [isHovering, setIsHovering] = React.useState(false);
   const [limits, setLimits] = React.useState([]);
   const [hoveredIndex, setHoveredIndex] = React.useState(null);
@@ -135,4 +135,4 @@ function Settings() {
   );
 }
 
-export default Settings;
+export default Statistics;

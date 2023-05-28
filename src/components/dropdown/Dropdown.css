@@ -49,11 +49,16 @@
   border: none;
   color: var(--txt-white);
   border-radius: 7px;
-  background-color: var(--main-color);
+  /* background-color: var(--main-color); */
+  background-color: var(--second-color);
+
   transition: all 0.3s;
 }
 .dropdown_footer:hover {
   transform: scale(1.02);
+  background-color: var(--main-color);
+
+  /* background-color: var(--second-color); */
 }
 
 .user_menu_item {
@@ -77,7 +82,7 @@
   gap: 16px;
   margin-bottom: 8px;
   transition: all 0.2s;
-  cursor: default;
+  cursor: pointer;
 }
 
 .notification_menu_item:hover {
