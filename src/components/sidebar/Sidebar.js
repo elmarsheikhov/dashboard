@@ -5,24 +5,19 @@ import { NavLink } from "react-router-dom";
 import logo from "../../assets/images/seniorlogohr.svg";
 import logoDark from "../../assets/images/Logo.png";
 function Sidebar({ isPadding, setIsPadding }) {
-  // const themestyle = React.useContext(ThemeContext);
-
-  // const [isOpen, setIsOpen] = React.useState(true);
-
   const [isOpen, setIsOpen] = React.useState(
     localStorage.getItem("sidebarOpen") === "true" || false
   );
   const [isDarkMode, setIsDarkMode] = React.useState(
     localStorage.getItem("themeMode") === "theme-mode-dark" || false
   );
-  // console.log(isDarkMode);
   const logoSrc = isDarkMode ? logoDark : logo;
   React.useEffect(() => {
     localStorage.setItem("sidebarOpen", isOpen);
   }, [isOpen]);
   React.useEffect(() => {
     setIsDarkMode(localStorage.getItem("themeMode") === "theme-mode-dark");
-  }, []);
+  });
   return (
     <div
       className="sidebar-main"
@@ -40,7 +35,6 @@ function Sidebar({ isPadding, setIsPadding }) {
             setIsPadding(!isOpen);
           }}
         >
-          {/* <img className="d-lg-none" src={logohalf} style={{ width: "32px" }} /> */}
           {isOpen ? (
             <i class="bx bx-menu-alt-right fs-1 menu-button"></i>
           ) : (

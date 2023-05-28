@@ -4,6 +4,8 @@ import "./Statistics.css";
 function Settings() {
   const [isHovering, setIsHovering] = React.useState(false);
   const [limits, setLimits] = React.useState([]);
+  const [hoveredIndex, setHoveredIndex] = React.useState(null);
+
   const [obj, setObj] = React.useState({
     1: { count: 40 },
     2: { count: 200 },
@@ -59,9 +61,6 @@ function Settings() {
     ];
     setLimits(newLimits);
   }, [max]);
-  const tooltipStyle = {
-    display: isHovering ? "block" : "none",
-  };
 
   return (
     <div className="statistics">
@@ -94,8 +93,8 @@ function Settings() {
               <div className="element">
                 {renderColumns()}
                 <div
-                  onMouseOver={() => setIsHovering(true)}
-                  onMouseOut={() => setIsHovering(false)}
+                  onMouseOver={() => setHoveredIndex(index)}
+                  onMouseOut={() => setHoveredIndex(null)}
                   className="column"
                   style={{
                     height: `${
@@ -111,8 +110,13 @@ function Settings() {
                         : "red",
                   }}
                 >
-                  <div className="hover_bar count_tooltip" style={tooltipStyle}>
-                    <p className="">count:{values[index].count}</p>
+                  <div
+                    className="hover_bar count_tooltip"
+                    style={{
+                      display: hoveredIndex === index ? "block" : "none",
+                    }}
+                  >
+                    <p className="">count: {values[index].count}</p>
                   </div>
                 </div>
               </div>

@@ -26,6 +26,8 @@
 
 ul {
   list-style: none;
+  margin-left: 0 !important;
+  padding: 0 !important;
 }
 ul li {
   display: flex;
@@ -37,6 +39,7 @@ ul li i {
 }
 .mood_item,
 .color_item {
+  margin-left: 0 !important;
   cursor: pointer;
   padding: 8px;
   transition: background-color 0.3s;
@@ -45,17 +48,17 @@ ul li i {
 }
 .mood_item:hover,
 .color_item:hover {
-  background-color: var(--second-color);
+  background-color: var(--main-color);
   color: var(--txt-white);
 }
 .mood_item i {
   border-radius: 50%;
 }
 .selected_mood {
-  background-color: var(--main-color);
+  background-color: var(--second-color);
   color: var(--txt-white);
 }
 .selected_color {
-  background-color: var(--main-color);
+  background-color: var(--second-color);
   color: var(--txt-white);
 }
