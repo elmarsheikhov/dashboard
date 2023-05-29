@@ -33,14 +33,19 @@ tbody tr:hover {
 tbody tr td {
   vertical-align: middle;
 }
+.pagination_block_length {
+  max-width: 240px;
+  overflow-x: scroll;
+}
 .page-number {
   cursor: pointer;
   margin-left: 4px;
   border-radius: var(--border-radius);
   transition: all 0.2s;
 }
+
 .page-number:hover {
-  background-color: var(--main-color);
+  background-color: var(--second-color);
   color: var(--txt-white);
 }
 .page-number.active {

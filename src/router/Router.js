@@ -8,6 +8,10 @@ import Settings from "../layouts/settings/Settings";
 function Router() {
   const TABS = [
     {
+      path: "/",
+      element: <Dashboard />,
+    },
+    {
       path: "/dashboard",
       element: <Dashboard />,
     },
@@ -31,7 +35,7 @@ function Router() {
   return (
     <div style={{ minHeight: "100vh" }}>
       <Routes>
-        <Route path="*" element={<Navigate to="/dashboard" />} />
+        <Route path="*" element={<Navigate to="/" />} />
         {TABS.map((item, key) => (
           <Route exact key={key} path={item.path} element={item.element} />
         ))}

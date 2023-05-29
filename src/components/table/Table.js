@@ -42,11 +42,91 @@ function Table({
       setBasketProducts(basket);
     }
   }, [basket]);
+  // const renderPagination = () => {
+  //   const pageNumbers = [];
+  //   for (let i = 1; i <= totalPages; i++) {
+  //     pageNumbers.push(i);
+  //   }
 
+  //   return (
+  //     <div className="pagination d-flex justify-content-between align-items-center">
+  //       <div className="limit fs-5">
+  //         <select
+  //           name="limit"
+  //           value={selectedLimit}
+  //           onChange={(event) => setSelectedLimit(event.target.value)}
+  //         >
+  //           <option value="5">5</option>
+  //           <option value="10">10</option>
+  //           <option value="15">15</option>
+  //           <option value="20">20</option>
+  //         </select>
+  //       </div>
+  //       <div>
+  //         {pageNumbers.length > 5 ? (
+  //           <div className="pagination_block_length d-flex py-2">
+  //             {pageNumbers.map((pageNumber) => (
+  //               <div
+  //                 key={pageNumber}
+  //                 className={`page-number ${
+  //                   pageNumber === currentPage ? "active" : ""
+  //                 } py-2 px-3`}
+  //                 onClick={() => handlePageClick(pageNumber)}
+  //               >
+  //                 {pageNumber}
+  //               </div>
+  //             ))}
+  //           </div>
+  //         ) : (
+  //           <div className="pagination_block d-flex py-2">
+  //             {pageNumbers.map((pageNumber) => (
+  //               <div
+  //                 key={pageNumber}
+  //                 className={`page-number ${
+  //                   pageNumber === currentPage ? "active" : ""
+  //                 } py-2 px-3`}
+  //                 onClick={() => handlePageClick(pageNumber)}
+  //               >
+  //                 {pageNumber}
+  //               </div>
+  //             ))}
+  //           </div>
+  //         )}
+  //       </div>
+  //     </div>
+  //   );
+  // };
   const renderPagination = () => {
     const pageNumbers = [];
     for (let i = 1; i <= totalPages; i++) {
       pageNumbers.push(i);
+    }
+
+    const displayPages = [];
+    const currentPageIndex = currentPage - 1;
+    const maxPageNumbersToShow = 5;
+    const showEllipsis = pageNumbers.length > maxPageNumbersToShow;
+
+    if (!showEllipsis) {
+      displayPages.push(...pageNumbers);
+    } else {
+      if (currentPage <= Math.ceil(maxPageNumbersToShow / 2)) {
+        displayPages.push(...pageNumbers.slice(0, maxPageNumbersToShow));
+        displayPages.push("...");
+      } else if (
+        currentPage >=
+        totalPages - Math.floor(maxPageNumbersToShow / 2)
+      ) {
+        displayPages.push("...");
+        displayPages.push(...pageNumbers.slice(-maxPageNumbersToShow));
+      } else {
+        const startIndex =
+          currentPageIndex - Math.floor(maxPageNumbersToShow / 2);
+        const endIndex = startIndex + maxPageNumbersToShow - 1;
+        displayPages.push("...");
+        displayPages.push(...pageNumbers.slice(startIndex, endIndex));
+        displayPages.push("...");
+      }
     }
 
     return (
@@ -64,19 +144,25 @@ function Table({
           </select>
         </div>
         <div>
-          <div className="pagination-block d-flex py-2">
-            {pageNumbers.map((pageNumber) => (
-              <div
-                key={pageNumber}
-                className={`page-number ${
-                  pageNumber === currentPage ? "active" : ""
-                } py-2 px-3`}
-                onClick={() => handlePageClick(pageNumber)}
-              >
-                {pageNumber}
-              </div>
-            ))}
-          </div>
+          {displayPages.length > 1 && (
+            <div className="pagination_block d-flex py-2">
+              {displayPages.map((pageNumber, index) => (
+                <div
+                  key={index}
+                  className={`page-number py-2 px-3 ${
+                    pageNumber === currentPage ? "active" : ""
+                  } ${pageNumber === "..." ? "ellipsis" : ""}`}
+                  onClick={
+                    pageNumber === "..."
+                      ? null
+                      : () => handlePageClick(pageNumber)
+                  }
+                >
+                  {pageNumber}
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       </div>
     );
