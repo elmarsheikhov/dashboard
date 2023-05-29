@@ -5,37 +5,47 @@ import Customers from "../layouts/customers/Customers";
 import Products from "../layouts/product/Products";
 import Statistics from "../layouts/statistics/Statistics";
 import Settings from "../layouts/settings/Settings";
+
 function Router() {
+  const BASE_PATH = "/admin";
+
   const TABS = [
     {
       path: "/",
+      element: <Navigate to={`${BASE_PATH}`} />,
+    },
+
+    {
+      path: `${BASE_PATH}/dashboard`,
       element: <Dashboard />,
     },
     {
-      path: "/dashboard",
-      element: <Dashboard />,
-    },
-    {
-      path: "/customers",
+      path: `${BASE_PATH}/customers`,
       element: <Customers />,
     },
     {
-      path: "/products",
+      path: `${BASE_PATH}/products`,
       element: <Products />,
     },
     {
-      path: "/statistics",
+      path: `${BASE_PATH}/statistics`,
       element: <Statistics />,
     },
     {
-      path: "/settings",
+      path: `${BASE_PATH}/settings`,
       element: <Settings />,
     },
   ];
+
   return (
     <div style={{ minHeight: "100vh" }}>
       <Routes>
-        <Route path="*" element={<Navigate to="/" />} />
+        <Route path="/" element={<Navigate to={`${BASE_PATH}/dashboard`} />} />
+        <Route
+          path="/admin"
+          element={<Navigate to={`${BASE_PATH}/dashboard`} />}
+        />
+
         {TABS.map((item, key) => (
           <Route exact key={key} path={item.path} element={item.element} />
         ))}

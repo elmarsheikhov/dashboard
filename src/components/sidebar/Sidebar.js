@@ -47,7 +47,8 @@ function Sidebar({ isPadding, setIsPadding }) {
         {sidebarlinks.map((item, index) => (
           <NavLink
             key={index}
-            to={item.route}
+            // to={`${BASE_PATH}/dashboard`}
+            to={`admin${item.route}`}
             className={`menu-item fw-bold w-75 py-3 d-flex  align-items-center gap-2  ${
               !isOpen ? "justify-content-center" : "justify-content-start"
             }`}
