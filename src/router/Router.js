@@ -14,7 +14,10 @@ function Router() {
       path: "/",
       element: <Navigate to={`${BASE_PATH}`} />,
     },
-
+    {
+      path: "/admin",
+      element: <Navigate to={`${BASE_PATH}`} />,
+    },
     {
       path: `${BASE_PATH}/dashboard`,
       element: <Dashboard />,
