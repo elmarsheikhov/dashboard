@@ -1,8 +1,13 @@
+.project_container {
+  overflow-x: auto !important;
+}
 .child-1 {
   flex-basis: auto;
   position: fixed;
   background-color: var(--second-bg);
+  padding: 0 !important;
   color: var(--txt-color);
+  z-index: 1000000;
 }
 .child-2 {
   background-color: var(--main-bg);
@@ -13,5 +18,12 @@
   flex-basis: 0;
   width: 100%;
   transition: all 0.3s ease-out;
-  overflow: hidden;
+}
+.child-1-inMobile {
+  flex-basis: auto;
+  position: fixed;
+  /* background-color: var(--second-bg); */
+  padding: 0 !important;
+  color: var(--txt-color);
+  z-index: 1000000;
 }

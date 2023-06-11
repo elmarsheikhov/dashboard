@@ -66,7 +66,7 @@ function Dashboard() {
                     <i className={`${item.icon} fs-1`}></i>
                   </div>
                   <div className="">
-                    <h1>{item.count}</h1>
+                    <h1 className="item_count">{item.count}</h1>
                     <div>{item.title}</div>
                   </div>
                 </div>
@@ -74,17 +74,13 @@ function Dashboard() {
             ))}
           </div>
         </div>
-        <div class="chart col-xl-6 col-lg-12">
+        <div class="chart col-xl-6 col-lg-9 col-md-9 col-sm-10 col-10 ">
           <Chart
             options={{
               ...options,
-              // theme: {
-              //   mode: true ? "dark" : "light",
-              // },
             }}
             series={options.series}
-            height="90%"
-            width="200%"
+            width="120%"
           />
         </div>
       </div>

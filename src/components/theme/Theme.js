@@ -74,8 +74,8 @@ function Theme({ isOpen, setIsOpen, clickedItem, setClickedItem }) {
 
     if (colorClass !== undefined) setCurrColor(colorClass.id);
   }, []);
-
   const refing = React.useRef();
+
   React.useEffect(() => {
     document.addEventListener("mousedown", (e) => {
       if (refing.current && !refing.current.contains(e.target)) {
@@ -90,10 +90,7 @@ function Theme({ isOpen, setIsOpen, clickedItem, setClickedItem }) {
         <div className="theme-header d-flex justify-content-between align-items-center gap-2 ">
           <h4>Theme settings</h4>
 
-          <i
-            class="theme_icon bx bx-message-square-x"
-            onClick={() => setIsOpen(false)}
-          ></i>
+          <i class="theme_icon bx bx-x" onClick={() => setIsOpen(false)}></i>
         </div>
         <div className="mt-4">
           <div className="">

@@ -2,7 +2,7 @@ import React from "react";
 import "./Statistics.css";
 
 function Statistics() {
-  const [isHovering, setIsHovering] = React.useState(false);
+  // const [isHovering, setIsHovering] = React.useState(false);
   const [limits, setLimits] = React.useState([]);
   const [hoveredIndex, setHoveredIndex] = React.useState(null);
 
@@ -65,10 +65,10 @@ function Statistics() {
   return (
     <div className="statistics">
       <h1 className="mb-5 "> Statistics</h1>
-      <div className="d-flex justify-content-center ">
+      <div className="main_statistics-box ">
         {keys.map((item, index) => (
           <div>
-            <div className="d-flex flex-column justify-content-between align-items-center mb-5 gap-2 p-1">
+            <div className="d-flex  flex-column justify-content-between align-items-center mb-5 gap-2 p-1">
               <button
                 className="button w-75 d-flex justify-content-center align-items-center"
                 onClick={() => handleIncrement(index)}
@@ -82,14 +82,14 @@ function Statistics() {
                 <i class="bx bx-chevron-down"></i>{" "}
               </button>
             </div>
-            <div className="total">
+            <div className="total ">
               <div className="element">
                 <div></div>
                 <div className="limit_column">{Math.floor((max / 3) * 4)}</div>
               </div>
             </div>
 
-            <div className="total">
+            <div className="total ">
               <div className="element">
                 {renderColumns()}
                 <div
@@ -116,7 +116,7 @@ function Statistics() {
                       display: hoveredIndex === index ? "block" : "none",
                     }}
                   >
-                    <p className="">count: {values[index].count}</p>
+                    <p className="counts">count: {values[index].count}</p>
                   </div>
                 </div>
               </div>

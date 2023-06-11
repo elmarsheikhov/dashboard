@@ -9,12 +9,12 @@ function Products() {
   const [productsData, setProductsData] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(true);
   const [id, setId] = React.useState(null);
+  const [basket, setBasket] = React.useState([]);
+  const [basketIsOpen, setBasketIsOpen] = React.useState(false);
   const [productCount, setProductCount] = React.useState(0);
   const [basketProducts, setBasketProducts] = React.useState([]);
   const [searchQuery, setSearchQuery] = React.useState("");
   const [showTooltip, setShowTooltip] = React.useState(false);
-  const [basketIsOpen, setBasketIsOpen] = React.useState(false);
-  const [basket, setBasket] = React.useState([]);
 
   const API_LINK = "https://fakestoreapi.com/products";
   const getProducts = async () => {

@@ -109,3 +109,12 @@
   border-width: 18px 18px 0 18px;
   border-color: var(--second-bg) transparent transparent transparent;
 }
+
+@media only screen and (max-width: 768px) {
+  .search_input {
+    width: 250px;
+  }
+  .info_icon {
+    display: none !important;
+  }
+}

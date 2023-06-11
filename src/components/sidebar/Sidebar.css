@@ -1,24 +1,48 @@
-.sidebar-main {
-  height: 10000vh;
+.sidebar_main {
+  height: 1000vh;
   box-shadow: var(--box-shadow);
   transition: width 0.3s ease-out;
+  z-index: 99999999999 !important;
 }
-.menu_logo {
+.sidebar_main .actiive {
+  display: none !important;
+}
+.shadow {
+  box-shadow: rgba(0, 0, 0, 0.374) 0px 22px 70px 9000px !important;
+}
+.logo_brand {
   width: 170px;
   cursor: pointer;
 }
-.menu-button {
+.menu_button {
   cursor: pointer;
   color: var(--main-color);
 }
-.menu-item {
+.menu_button_inMobile {
+  cursor: pointer;
+  color: var(--main-color);
+  margin-left: 5px;
+  margin-top: 35px;
+}
+.menu_item {
   cursor: pointer;
   text-decoration: none;
   color: var(--txt-color);
 }
-.menu-icon {
+.menu_icon {
   font-size: 28px;
 }
 .active {
   color: var(--second-color);
+}
+
+@media only screen and (max-width: 600px) {
+  .sidebar_main {
+    width: 300px !important;
+    font-size: 14px;
+  }
+  .logo_brand {
+    width: 120px !important;
+    cursor: pointer;
+  }
 }

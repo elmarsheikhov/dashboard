@@ -15,15 +15,11 @@ function Navbar({ clickedItem, setClickedItem }) {
   const renderUser = (user) => (
     <div className="d-flex align-items-center gap-3">
       <img className="image" src={image} />
-      <h5>{user.name}</h5>
+      <p className="user_name">{user.name}</p>
     </div>
   );
   const renderUserMenu = (item, index) => (
-    <div
-      key={index}
-      className="user_menu_item"
-      // style={{ cursor: "pointer" }}
-    >
+    <div key={index} className="user_menu_item">
       <i className={`${item.icon} fs-4`}></i>
       <span>{item.content}</span>
     </div>
@@ -37,7 +33,7 @@ function Navbar({ clickedItem, setClickedItem }) {
 
   const [isOpen, setIsOpen] = React.useState(false);
   return (
-    <div className="navbar py-3 mb-4 ">
+    <div className="navbar py-3 mb-4">
       <div className="nav-right d-flex justify-content-between w-100 gap-3 p-3">
         {/* Dropdown 1 */}
         <Dropdown

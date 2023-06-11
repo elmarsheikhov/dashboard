@@ -24,7 +24,7 @@
 .dropdown_content {
   position: absolute;
   top: 50px;
-  right: 0;
+  right: 20px;
   width: max-content;
   max-width: 400px;
   background-color: var(--second-bg);
@@ -49,7 +49,6 @@
   border: none;
   color: var(--txt-white);
   border-radius: 7px;
-  /* background-color: var(--main-color); */
   background-color: var(--second-color);
 
   transition: all 0.3s;
@@ -57,8 +56,6 @@
 .dropdown_footer:hover {
   transform: scale(1.02);
   background-color: var(--main-color);
-
-  /* background-color: var(--second-color); */
 }
 
 .user_menu_item {
@@ -87,4 +84,28 @@
 
 .notification_menu_item:hover {
   color: var(--main-color);
+}
+
+@media only screen and (max-width: 768px) {
+  .dropdown_content {
+    max-width: 300px;
+    font-size: 12px;
+    padding: 8px 16px;
+  }
+  .dropdown_footer {
+    width: 100%;
+    padding: 8px;
+  }
+}
+@media only screen and (max-width: 552px) {
+  .dropdown_content {
+    max-width: 240px;
+    font-size: 10px;
+
+    padding: 6px 12px;
+  }
+  .dropdown_footer {
+    width: 100%;
+    padding: 6px;
+  }
 }

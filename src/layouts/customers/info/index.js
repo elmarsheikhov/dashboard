@@ -48,13 +48,15 @@ function Info({ id, setId, customer_list }) {
         <Modal.Header className="custom_header">
           <div className="d-flex justify-content-between align-items-center mb-3 w-100">
             <button
-              className="btn btn-success d-flex justify-content-center align-items-center"
+              className="btn btn-primary d-flex justify-content-center align-items-center"
               onClick={handleClose}
             >
               <i class="bx bx-chevron-left fs-3"></i>
             </button>
             <div className=" fs-2">Info</div>
-            <button className="btn btn-success">Save</button>
+            <div className="close_icon fs-2" onClick={handleClose}>
+              <i class="bx bx-x"></i>
+            </div>
           </div>
         </Modal.Header>
       </div>
@@ -87,8 +89,9 @@ function Info({ id, setId, customer_list }) {
                   autoFocus={isClickedEdit && selectedItemIndex === index}
                 />
                 <div className="edit w-25 d-flex justify-content-end align-items-center">
-                  <span onClick={() => handleEditClick(index)}>Edit</span>{" "}
-                  <i class="bx bxs-edit-alt fs-3 px-3"></i>
+                  <span onClick={() => handleEditClick(index)}>
+                    <button className="btn btn-success">edit</button>
+                  </span>{" "}
                 </div>
               </div>
             ))}
@@ -97,8 +100,8 @@ function Info({ id, setId, customer_list }) {
       </div>
       <div className="info_modal_theme">
         <Modal.Footer className="custom_footer">
-          <Button variant="danger" onClick={handleClose}>
-            Close
+          <Button variant="success" onClick={handleClose}>
+            Save
           </Button>
         </Modal.Footer>
       </div>

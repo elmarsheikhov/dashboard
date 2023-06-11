@@ -4,29 +4,86 @@ import sidebarlinks from "../../assets/json/sidebar_routes.json";
 import { NavLink } from "react-router-dom";
 import logo from "../../assets/images/seniorlogohr.svg";
 import logoDark from "../../assets/images/Logo.png";
-function Sidebar({ isPadding, setIsPadding }) {
-  const [isOpen, setIsOpen] = React.useState(
-    localStorage.getItem("sidebarOpen") === "true" || false
-  );
+
+function Sidebar({ setIsOpen, isOpen, setIsPadding, isMobile }) {
+  const sidebarRef = React.useRef(null);
+
   const [isDarkMode, setIsDarkMode] = React.useState(
     localStorage.getItem("themeMode") === "theme-mode-dark" || false
   );
   const logoSrc = isDarkMode ? logoDark : logo;
+
   React.useEffect(() => {
     localStorage.setItem("sidebarOpen", isOpen);
   }, [isOpen]);
+
   React.useEffect(() => {
     setIsDarkMode(localStorage.getItem("themeMode") === "theme-mode-dark");
   });
-  return (
+
+  React.useEffect(() => {
+    document.addEventListener("mousedown", (e) => {
+      if (sidebarRef.current && !sidebarRef.current.contains(e.target)) {
+        setIsOpen(false);
+      }
+    });
+  }, [sidebarRef]);
+
+  return isMobile ? (
+    <div ref={sidebarRef}>
+      {!isOpen && (
+        <div className="">
+          <i
+            class="bx bx-menu fs-1 menu_button_inMobile"
+            onClick={() => setIsOpen(!isOpen)}
+          ></i>
+        </div>
+      )}
+      {isOpen && (
+        <div
+          className="sidebar_main shadow"
+          style={{
+            width: "300px",
+          }}
+        >
+          <div className="d-flex justify-content-center gap-3 py-5">
+            <img className="logo_brand w-50" src={logoSrc} alt="Logo" />
+            <div
+              className="d-flex justify-content-center align-items-center"
+              onClick={() => {
+                setIsOpen(!isOpen);
+              }}
+            >
+              <i class="bx bx-menu-alt-right fs-1 menu_button"></i>
+            </div>
+          </div>
+
+          <div className="d-flex flex-column justify-content-center align-items-center">
+            {sidebarlinks.map((item, index) => (
+              <NavLink
+                key={index}
+                to={`${item.route}`}
+                className={`menu_item fw-bold w-75 py-3 d-flex  align-items-center gap-2  ${"justify-content-start"}`}
+              >
+                <i className={`menu_icon ${item.icon}`}></i>
+                <span className="item_display_name">{item.display_name}</span>
+              </NavLink>
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
+  ) : (
     <div
-      className="sidebar-main"
+      className="sidebar_main"
       style={{
         width: isOpen ? "300px" : "80px",
       }}
     >
       <div className="d-flex justify-content-center gap-3 py-5">
-        {isOpen && <img className="w-50" src={logoSrc} alt="Logo" />}
+        {isOpen ? (
+          <img className="logo_brand w-50" src={logoSrc} alt="Logo" />
+        ) : null}
 
         <div
           className="d-flex justify-content-center align-items-center"
@@ -36,9 +93,9 @@ function Sidebar({ isPadding, setIsPadding }) {
           }}
         >
           {isOpen ? (
-            <i class="bx bx-menu-alt-right fs-1 menu-button"></i>
+            <i class="bx bx-menu-alt-right fs-1 menu_button"></i>
           ) : (
-            <i class="bx bx-menu fs-1 menu-button "></i>
+            <i class="bx bx-menu fs-1 menu_button "></i>
           )}
         </div>
       </div>
@@ -47,14 +104,17 @@ function Sidebar({ isPadding, setIsPadding }) {
         {sidebarlinks.map((item, index) => (
           <NavLink
             key={index}
-            // to={`${BASE_PATH}/dashboard`}
-            to={`admin${item.route}`}
-            className={`menu-item fw-bold w-75 py-3 d-flex  align-items-center gap-2  ${
+            to={`${item.route}`}
+            className={`menu_item fw-bold w-75 py-3 d-flex  align-items-center gap-2  ${
               !isOpen ? "justify-content-center" : "justify-content-start"
             }`}
           >
-            <i className={`menu-icon ${item.icon}`}></i>
-            {isOpen ? <span>{item.display_name}</span> : ""}
+            <i className={`menu_icon ${item.icon}`}></i>
+            {isOpen ? (
+              <span className="item_display_name">{item.display_name}</span>
+            ) : (
+              ""
+            )}
           </NavLink>
         ))}
       </div>

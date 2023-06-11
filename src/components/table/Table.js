@@ -42,60 +42,7 @@ function Table({
       setBasketProducts(basket);
     }
   }, [basket]);
-  // const renderPagination = () => {
-  //   const pageNumbers = [];
-  //   for (let i = 1; i <= totalPages; i++) {
-  //     pageNumbers.push(i);
-  //   }
 
-  //   return (
-  //     <div className="pagination d-flex justify-content-between align-items-center">
-  //       <div className="limit fs-5">
-  //         <select
-  //           name="limit"
-  //           value={selectedLimit}
-  //           onChange={(event) => setSelectedLimit(event.target.value)}
-  //         >
-  //           <option value="5">5</option>
-  //           <option value="10">10</option>
-  //           <option value="15">15</option>
-  //           <option value="20">20</option>
-  //         </select>
-  //       </div>
-  //       <div>
-  //         {pageNumbers.length > 5 ? (
-  //           <div className="pagination_block_length d-flex py-2">
-  //             {pageNumbers.map((pageNumber) => (
-  //               <div
-  //                 key={pageNumber}
-  //                 className={`page-number ${
-  //                   pageNumber === currentPage ? "active" : ""
-  //                 } py-2 px-3`}
-  //                 onClick={() => handlePageClick(pageNumber)}
-  //               >
-  //                 {pageNumber}
-  //               </div>
-  //             ))}
-  //           </div>
-  //         ) : (
-  //           <div className="pagination_block d-flex py-2">
-  //             {pageNumbers.map((pageNumber) => (
-  //               <div
-  //                 key={pageNumber}
-  //                 className={`page-number ${
-  //                   pageNumber === currentPage ? "active" : ""
-  //                 } py-2 px-3`}
-  //                 onClick={() => handlePageClick(pageNumber)}
-  //               >
-  //                 {pageNumber}
-  //               </div>
-  //             ))}
-  //           </div>
-  //         )}
-  //       </div>
-  //     </div>
-  //   );
-  // };
   const renderPagination = () => {
     const pageNumbers = [];
     for (let i = 1; i <= totalPages; i++) {
@@ -169,74 +116,76 @@ function Table({
   };
 
   return (
-    <div className="mb-4">
-      <table className="table mb-3">
-        <thead>
-          <tr>
-            {headData.map((item, index, headData) => (
-              <th key={index} className="head_elements p-3">
-                {item}
-              </th>
-            ))}
-            <th className=" p-3 text-center ">Info</th>
-            <th className=" p-3 text-center">{string}</th>
-          </tr>
-        </thead>
-        <tbody>
-          {slicedData.map((item, index) => (
-            <tr key={index}>
-              {headData.map((key) => {
-                if (key === "image") {
+    <>
+      <div className="mb-4 table_component">
+        <table className="table mb-3">
+          <thead>
+            <tr>
+              {headData.map((item, index, headData) => (
+                <th key={index} className="head_elements p-3">
+                  {item}
+                </th>
+              ))}
+              <th className=" p-3 text-center ">Info</th>
+              <th className=" p-3 text-center">{string}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {slicedData.map((item, index) => (
+              <tr key={index}>
+                {headData.map((key) => {
+                  if (key === "image") {
+                    return (
+                      <td key={key} className="p-3">
+                        <img
+                          src={item[key]}
+                          alt={item["title"]}
+                          width="50"
+                          height="50"
+                        />
+                      </td>
+                    );
+                  }
                   return (
-                    <td key={key} className="p-3">
-                      <img
-                        src={item[key]}
-                        alt={item["title"]}
-                        width="50"
-                        height="50"
-                      />
+                    <td
+                      key={key}
+                      className="p-3"
+                      style={{ whiteSpace: "pre-line", maxWidth: "500px" }}
+                    >
+                      {typeof item[key] === "object"
+                        ? `rate: ${JSON.stringify(
+                            item[key].rate
+                          )}\ncount: ${JSON.stringify(item[key].count)}`
+                        : item[key]}
                     </td>
                   );
-                }
-                return (
-                  <td
-                    key={key}
-                    className="p-3"
-                    style={{ whiteSpace: "pre-line", maxWidth: "500px" }}
-                  >
-                    {typeof item[key] === "object"
-                      ? `rate: ${JSON.stringify(
-                          item[key].rate
-                        )}\ncount: ${JSON.stringify(item[key].count)}`
-                      : item[key]}
-                  </td>
-                );
-              })}
-              <td className="text-center p-2">
-                <i
-                  className="table_icon  bx bx-info-circle"
-                  onClick={() => {
-                    setId(index + selectedLimit * (currentPage - 1) + 1);
-                  }}
-                ></i>
-              </td>
-              <td className="text-center p-2">
-                <input
-                  className="checkbox"
-                  type="checkbox"
-                  checked={
-                    basket &&
-                    basket.some((basketItem) => basketItem.id === item.id)
-                  }
-                  onChange={(e) => handleBasket(e, item)}
-                />
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+                })}
+                <td className="text-center p-2">
+                  <i
+                    className="table_icon  bx bx-info-circle"
+                    onClick={() => {
+                      setId(index + selectedLimit * (currentPage - 1) + 1);
+                    }}
+                  ></i>
+                </td>
+                <td className="text-center p-2">
+                  <input
+                    className="checkbox"
+                    type="checkbox"
+                    checked={
+                      basket &&
+                      basket.some((basketItem) => basketItem.id === item.id)
+                    }
+                    onChange={(e) => handleBasket(e, item)}
+                  />
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
       {renderPagination()}
-    </div>
+    </>
   );
 }
 
